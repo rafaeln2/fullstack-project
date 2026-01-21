@@ -1,19 +1,20 @@
 
-from typing import Optional
-from sqlalchemy import Column, Integer, String, Float, ForeignKey
-from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Integer, String, Float, ForeignKey
+from sqlalchemy.orm import mapped_column, Mapped, declarative_base
+# from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
 class Product(Base):
     __tablename__ = "products"
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String(50), nullable=False)
-    price = Column(Float)
-    quantity = Column(Integer)
-    origin_place = Column(String(50))    
+    id: Mapped[int] = mapped_column(primary_key=True, index=True, unique=True)
+    name: Mapped[str] = mapped_column(String(50), nullable=False)  
+    price: Mapped[Float] = mapped_column(Float, nullable=True)
+    quantity: Mapped[int] = mapped_column(Integer, nullable=True)
+    origin_place: Mapped[str] = mapped_column(String(50), nullable=True)  
     
+    def __repr__(self):
+        return f"<Product(id={self.id}, name={self.name}, price={self.price}, quantity={self.quantity}, origin_place={self.origin_place})>"
 
 
 # from pydantic import BaseModel, Field, field_validator
