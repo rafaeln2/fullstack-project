@@ -4,6 +4,14 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Welcome from './Welcome'
 import Button from './Button'
+import { HelloWithoutJSX } from './HelloWorld'
+import { UserProfile } from './UserProfile'
+import { StyledForm } from './StyledForm'
+import { CandidateProfile } from './CandidateProfile'
+import { Product } from './Product'
+import { Greeting } from './Greeting'
+import { CardWrapper } from './CardWrapper'
+import { UserDetails } from './UserDetails'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -32,9 +40,26 @@ function App() {
 
   return (
     <div className="App">
+      <UserDetails name="Rafael" isOnline={true} />
+
+      <CardWrapper title="Card 1" >
+        <p>This is the card content</p>
+      </CardWrapper>
+
+      <Greeting message="Hello" name="Rafael"/>
+      <Greeting message="Good morning" />
+      <Greeting message="Hello" name="Rafael"/>
+
       <p>Hello Vite + React!</p>
-      <Welcome />
+      <Welcome name="Rafael" alias="função"/>
+      <Welcome name="Joao" alias="chefe"/>
+
       <Button />
+      <HelloWithoutJSX />
+      <UserProfile />
+      <StyledForm />
+      <CandidateProfile />
+      <Product title="Notebook" price={1000} inStock={true} categories={["Electronics", "Computers", "Gaming"]} />
     </div>
   )
 }
