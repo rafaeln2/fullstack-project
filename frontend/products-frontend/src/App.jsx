@@ -25,6 +25,8 @@ import { LoginCard } from './LoginCard'
 import { SimpleCounter } from './SimpleCounter'
 import { PrevStateCounter } from './PrevStateCounter'
 import { BatchingCounter } from './BatchingCounter'
+import { NewUserCard } from './NewUserCard'
+import { ToDoList } from './ToDoList'
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -56,6 +58,8 @@ function App() {
   //   {id:2, title:"PS4", price:2465, inStock:true, categories:["Electronics", "Computers", "Gaming"]}]
   return (
     <div className="App">
+      <ToDoList />
+      <NewUserCard />
       <BatchingCounter />
       <PrevStateCounter />
       <SimpleCounter />
