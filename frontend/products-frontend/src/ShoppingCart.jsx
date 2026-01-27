@@ -10,10 +10,15 @@ export const ShoppingCart = () => {
         vueCourse : 20.15
     }
     const handleAddReactCourse =() => {
-        setCartItems({...cartItems, reactCourse : cartItems.reactCourse + 1})
+        if( cartItems.reactCourse < 5){
+            setCartItems({...cartItems, reactCourse : cartItems.reactCourse + 1})
+        }        
     }
     const handleAddVueCourse = () => {
         setCartItems({...cartItems, vueCourse : cartItems.vueCourse + 1})
+    }
+    const handleClearCart = () => {
+        setCartItems({reactCourse : 0, vueCourse : 0})
     }
     return (
         <div className="shopping-card">
@@ -27,7 +32,7 @@ export const ShoppingCart = () => {
                 price = {prices.vueCourse}
                 quantity = {cartItems.vueCourse}
                 onAddReactCourse = {() => handleAddReactCourse()} onAddCourse = {() => handleAddVueCourse()} />
-            <CartSummary cartItems = {cartItems} prices = {prices} />
+            <CartSummary cartItems = {cartItems} prices = {prices} handleClearCart={() => handleClearCart()} />
         </div>
     );
 };
@@ -45,7 +50,7 @@ export const ProductCart = ({name, price, quantity, onAddCourse, }) => {
     );
 };
 
-export const CartSummary = ({cartItems, prices}) => {
+export const CartSummary = ({cartItems, prices, handleClearCart}) => {
     let totalItems = cartItems.reactCourse + cartItems.vueCourse
     let totalPrice = cartItems.reactCourse * prices.reactCourse + cartItems.vueCourse * prices.vueCourse
     return (
@@ -53,6 +58,7 @@ export const CartSummary = ({cartItems, prices}) => {
             <h3>Card Summary</h3>
             <p>total items: {totalItems}</p>
             <p>total price: {totalPrice}</p>
+            <button onClick={handleClearCart}>Clear Cart</button>
         </div>
     );
 }
